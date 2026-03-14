@@ -40,12 +40,12 @@ def get_relevant_schema(user_query: str, rag_approach: str = 'keyword'):
     # Fallback to full schema
     return load_schema()
 
-st.set_page_config(page_title="SQL Assistant Crew", layout="wide")
+st.set_page_config(page_title="DataInterpreter", layout="wide")
 
-st.title("SQL Assistant Crew")
+st.title("DataInterpreter")
 
 st.markdown("""
-Welcome to the SQL Assistant Crew!  
+Welcome to **DataInterpreter**!  
 This app lets you interact with your database using natural language. Simply type your data question or request (for example, "Which brands sell the most products?"), and our multi-agent system will:
 1. **Generate** a relevant SQL query for your request,
 2. **Review** and optimize the query for correctness and performance,

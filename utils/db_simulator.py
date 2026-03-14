@@ -1,4 +1,4 @@
-import sqlite3, random, string
+import sqlite3, random, string, os
 import pandas as pd
 from datetime import datetime, timedelta, timezone
 
@@ -149,6 +149,7 @@ def get_structured_schema(db_path):
 
 def setup_ecommerce_db(db_path=DB_PATH, seed=42):
     random.seed(seed)
+    os.makedirs(os.path.dirname(db_path) or ".", exist_ok=True)
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
     

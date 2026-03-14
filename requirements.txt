@@ -1,4 +1,4 @@
-# SQL Assistant Crew - Requirements
+# DataInterpreter - Requirements
 # Python 3.9+ (3.11 recommended)
 # Tested and verified stable versions
 

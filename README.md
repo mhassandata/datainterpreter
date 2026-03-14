@@ -1,6 +1,6 @@
-# 📘 SQL Assistant Crew
+# 📘 DataInterpreter
 
-**SQL Assistant Crew** is a Streamlit-powered, CrewAI-orchestrated multi-agent assistant that allows users to interact with a **SQLite** database using natural language. With a modular agent architecture for generation, review, and compliance checking, users can safely and intuitively run SQL queries—no manual SQL required. Checkout the blog for more details (https://towardsdatascience.com/a-multi-agent-sql-assistant-you-can-trust-with-human-in-loop-checkpoint-llm-cost-control/)
+**DataInterpreter** is a Streamlit-powered, CrewAI-orchestrated multi-agent assistant that allows users to interact with a **SQLite** database using natural language. With a modular agent architecture for generation, review, and compliance checking, users can safely and intuitively run SQL queries—no manual SQL required.
 
 ---
 
@@ -91,7 +91,7 @@ The system offers **4 different RAG approaches** to optimize schema handling for
 |                   | • FAISS Vector Search |
 |                   | • ChromaDB Vector DB |
 | Vector Embeddings | Sentence Transformers |
-| Python Version    | 3.9+ (3.11 recommended) |
+| Python Version    | 3.9+ (3.12 recommended) |
 | Data Processing   | Pandas, NumPy       |
 
 ---
@@ -99,15 +99,15 @@ The system offers **4 different RAG approaches** to optimize schema handling for
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.9+ (Python 3.11 recommended)
+- Python 3.9+ (Python 3.12 recommended)
 - OpenAI API key
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/sql-assistant-crew.git
-cd sql-assistant-crew
+git clone https://github.com/your-username/datainterpreter.git
+cd datainterpreter
 
 # Install dependencies
 pip install -r requirements.txt
