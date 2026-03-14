@@ -19,16 +19,18 @@ OUTPUT = "DataInterpreter_Documentation.pdf"
 
 # ── Color Palette ─────────────────────────────────────────────────────────────
 C_DARK       = colors.HexColor("#0F172A")   # slate-900
-C_BLUE       = colors.HexColor("#38BDF8")   # sky-400
-C_GREEN      = colors.HexColor("#34D399")   # emerald-400
-C_AMBER      = colors.HexColor("#FBBF24")   # amber-400
-C_RED        = colors.HexColor("#EF4444")   # red-500
+C_BLUE       = colors.HexColor("#38BDF8")   # sky-400  (use only on dark backgrounds)
+C_BLUE_DARK  = colors.HexColor("#1D6FA5")   # readable blue for light/white backgrounds
+C_GREEN      = colors.HexColor("#156B43")   # darker emerald — readable on white
+C_GREEN_DARK = colors.HexColor("#065F46")   # even darker green for table headers
+C_AMBER      = colors.HexColor("#B45309")   # amber-700 — readable on white/light bg
+C_RED        = colors.HexColor("#B91C1C")   # red-700 — readable on light bg
 C_SLATE      = colors.HexColor("#1E293B")   # slate-800
-C_GRAY       = colors.HexColor("#94A3B8")   # slate-400
+C_GRAY       = colors.HexColor("#475569")   # slate-600 — darker for readability
 C_LIGHT      = colors.HexColor("#F1F5F9")   # slate-100
 C_WHITE      = colors.white
 C_CODE_BG    = colors.HexColor("#1E293B")
-C_CODE_TEXT  = colors.HexColor("#7DD3FC")
+C_CODE_TEXT  = colors.HexColor("#BAE6FD")   # lighter sky-200, visible on dark code bg
 
 
 # ── Page Template with header/footer ─────────────────────────────────────────
@@ -69,11 +71,11 @@ def make_styles():
 
     styles['body'] = ParagraphStyle(
         'body', fontName='Helvetica', fontSize=10,
-        leading=14, textColor=C_DARK, spaceAfter=6, alignment=TA_JUSTIFY
+        leading=14, textColor=colors.black, spaceAfter=6, alignment=TA_JUSTIFY
     )
     styles['body_small'] = ParagraphStyle(
         'body_small', fontName='Helvetica', fontSize=9,
-        leading=13, textColor=C_DARK, spaceAfter=4
+        leading=13, textColor=colors.black, spaceAfter=4
     )
     styles['chapter'] = ParagraphStyle(
         'chapter', fontName='Helvetica-Bold', fontSize=16,
@@ -90,7 +92,7 @@ def make_styles():
     )
     styles['bullet'] = ParagraphStyle(
         'bullet', fontName='Helvetica', fontSize=9.5,
-        leading=13, textColor=C_DARK, leftIndent=16,
+        leading=13, textColor=colors.black, leftIndent=16,
         bulletIndent=4, spaceAfter=3
     )
     styles['code'] = ParagraphStyle(
@@ -101,12 +103,12 @@ def make_styles():
     )
     styles['note'] = ParagraphStyle(
         'note', fontName='Helvetica-Oblique', fontSize=9,
-        leading=13, textColor=C_DARK, backColor=colors.HexColor("#FEF3C7"),
+        leading=13, textColor=colors.HexColor("#713F12"), backColor=colors.HexColor("#FEF3C7"),
         leftIndent=8, borderPad=6, spaceAfter=6
     )
     styles['note_red'] = ParagraphStyle(
         'note_red', fontName='Helvetica-Oblique', fontSize=9,
-        leading=13, textColor=C_DARK, backColor=colors.HexColor("#FEE2E2"),
+        leading=13, textColor=colors.HexColor("#7F1D1D"), backColor=colors.HexColor("#FEE2E2"),
         leftIndent=8, borderPad=6, spaceAfter=6
     )
     styles['toc_num'] = ParagraphStyle(
@@ -123,7 +125,7 @@ def make_styles():
     )
     styles['cover_sub'] = ParagraphStyle(
         'cover_sub', fontName='Helvetica', fontSize=15,
-        leading=20, textColor=C_GREEN, alignment=TA_CENTER
+        leading=20, textColor=colors.HexColor("#34D399"), alignment=TA_CENTER
     )
     styles['cover_info'] = ParagraphStyle(
         'cover_info', fontName='Helvetica', fontSize=11,
@@ -416,7 +418,7 @@ def build_pdf():
          "re-embedding on every application startup."),
     ]
     for title, desc in decisions:
-        story.append(Paragraph(f"<b><font color='#FBBF24'>{title}</font></b>  --  {desc}",
+        story.append(Paragraph(f"<b><font color='#B45309'>{title}</font></b>  --  {desc}",
                                 styles['body_small']))
         story.append(Spacer(1, 1*mm))
 
@@ -430,7 +432,7 @@ def build_pdf():
         "allow_delegation=False.", styles))
 
     agents = [
-        ("4.1  query_generator_agent -- Senior Data Analyst", C_BLUE,
+        ("4.1  query_generator_agent -- Senior Data Analyst", C_BLUE_DARK,
          [["Role",        "Senior Data Analyst"],
           ["Model",       "openai/gpt-4o-mini  |  Temperature: 0.2"],
           ["Goal",        "Translate natural language into accurate, efficient SQL"],
@@ -577,7 +579,7 @@ def build_pdf():
          "Returns top-5 tables. Falls back to pattern defaults (e.g., 'revenue' -> orders, order_items, products).",
          ["Instant, no ML model required", "No external dependencies"],
          ["Limited to predefined keyword vocabulary", "May miss complex semantic relationships"]),
-        ("7.3  FAISSVectorRAG -- Semantic Embedding Search", C_BLUE,
+        ("7.3  FAISSVectorRAG -- Semantic Embedding Search", C_BLUE_DARK,
          "Uses sentence-transformers/all-MiniLM-L6-v2 for semantic embeddings. "
          "At init: creates rich table descriptions (name, purpose, columns, FK relationships, use cases) "
          "and indexes them with FAISS IndexFlatIP (cosine similarity). "
@@ -754,7 +756,7 @@ def build_pdf():
     ]
     for num, desc in steps:
         story.append(Paragraph(
-            f"<b><font color='#38BDF8'>{num}.</font></b>  {desc}",
+            f"<b><font color='#1D6FA5'>{num}.</font></b>  {desc}",
             styles['body_small']))
         story.append(Spacer(1, 1*mm))
 
