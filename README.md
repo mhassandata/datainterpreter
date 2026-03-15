@@ -2,6 +2,8 @@
 
 **DataInterpreter** is a Streamlit-powered, CrewAI-orchestrated multi-agent assistant that allows users to interact with a **SQLite** database using natural language. With a modular agent architecture for generation, review, and compliance checking, users can safely and intuitively run SQL queries—no manual SQL required.
 
+![DataInterpreter App Screenshot](main.png)
+
 ---
 
 ## 🧠 How It Works
